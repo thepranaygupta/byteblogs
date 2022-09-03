@@ -3,7 +3,7 @@ import Image from 'next/Image'
 import { AiFillCaretDown } from 'react-icons/ai'
 
 function Navbar() {
-  const user = true
+  const user = false
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-[10000] w-full py-4 shadow-sm">
@@ -14,17 +14,17 @@ function Navbar() {
           </a>
         </Link>
         {!user ? (
-          <div className="space-x-4">
+          <div className="space-x-6">
             <Link href="/login">
-              <a>Login</a>
+              <a className="hover:underline">Login</a>
             </Link>
             <Link href="/signup">
-              <a>Sign Up</a>
+              <a className="rounded-md border-[2px] border-gray-400 p-2 hover:shadow-md">Sign Up</a>
             </Link>
           </div>
         ) : (
           <div className="flex items-center space-x-4">
-            <button>Log Out</button>
+            <button className="hover:underline">Log Out</button>
             <div className="flex cursor-pointer items-center space-x-1">
               <div className="borer-1 flex h-8 w-8 items-center justify-center rounded-full border-gray-500 bg-indigo-900 text-gray-300">
                 <p>S</p>
