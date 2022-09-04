@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/Image'
+import Image from 'next/image'
 import { AiFillCaretDown } from 'react-icons/ai'
 import AppContext from '../AppContext'
 import { useContext } from 'react'
