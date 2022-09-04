@@ -4,6 +4,7 @@ import { AiFillCaretDown } from 'react-icons/ai'
 import AppContext from '../AppContext'
 import { useContext } from 'react'
 import { toast } from 'react-toastify'
+import Router from 'next/router'
 
 function Navbar() {
   const { state, setUser } = useContext(AppContext)
@@ -15,6 +16,7 @@ function Navbar() {
     toast.success('Logged Out Successfully!')
     localStorage.removeItem('user')
     setUser(null)
+    Router.push('/')
   }
 
   return (
@@ -45,7 +47,10 @@ function Navbar() {
               <p className="mr-3 hover:underline" onClick={logout}>
                 Log Out
               </p>
-              <div className="borer-1 flex h-8 w-8 items-center justify-center rounded-full border-gray-500 bg-indigo-900 text-gray-300">
+              <div
+                className="borer-1 flex h-8 w-8 items-center justify-center rounded-full border-gray-500 bg-indigo-900 text-gray-300"
+                onClick={() => Router.push(`/profile/${state.user.user.id}`)}
+              >
                 <p>{state.user.user.username.charAt(0)}</p>
               </div>
             </div>

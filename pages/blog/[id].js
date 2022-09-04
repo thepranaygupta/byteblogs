@@ -136,7 +136,7 @@ export default function Blog({ blog, allblogs, myblog }) {
   )
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const blogPosts = await fetch(`https://byteblogs.herokuapp.com/api/blogs?populate=*`)
   const blog = await blogPosts.json();
 

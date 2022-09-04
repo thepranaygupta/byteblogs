@@ -71,6 +71,11 @@ function CreateBlog() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    if (!url) {
+      toast.warn('Please Upload Image first')
+      return
+    }
+
     const { data } = await axios.post(`${backendUri}/blogs`, {
       data: {
         heading: title,
