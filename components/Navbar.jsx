@@ -9,6 +9,7 @@ function Navbar() {
   const { state, setUser } = useContext(AppContext)
 
   const user = state?.user
+  console.log(user)
 
   const logout = () => {
     toast.success('Logged Out Successfully!')
@@ -42,7 +43,7 @@ function Navbar() {
             </Link>
             <div className="flex cursor-pointer items-center space-x-1">
               <div className="borer-1 flex h-8 w-8 items-center justify-center rounded-full border-gray-500 bg-indigo-900 text-gray-300">
-                <p>S</p>
+                <p>{user.user.username.charAt(0)}</p>
               </div>
               <AiFillCaretDown fill="#aaa" />
             </div>
