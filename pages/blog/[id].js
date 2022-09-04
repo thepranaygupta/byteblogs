@@ -87,9 +87,9 @@ const ArticleContent = styled(Stack)(({ theme }) => ({
 
 export default function Blog({ blog, allblogs, myblog }) {
   const result = parseISO(myblog.attributes.publishedAt)
-  console.log(blog)
-  console.log(allblogs)
-  console.log('My Blog : ', myblog)
+  // console.log(blog)
+  // console.log(allblogs)
+  // console.log('My Blog : ', myblog)
 
   return (
     <>
@@ -138,10 +138,9 @@ export default function Blog({ blog, allblogs, myblog }) {
 
 export const getStaticPaths = async () => {
   const blogPosts = await fetch(`https://byteblogs.herokuapp.com/api/blogs?populate=*`)
-  const blog = await blogPosts.json();
+  const blog = await blogPosts.json()
 
-
-  console.log("BLOG",blog.data);
+  console.log('BLOG', blog.data)
 
   return {
     paths: blog?.data?.map((item) => ({
@@ -154,9 +153,7 @@ export const getStaticPaths = async () => {
 }
 
 export async function getStaticProps({ params }) {
-
-  console.log("Params", params);
-
+  console.log('Params', params)
 
   const res2 = await fetch(`https://byteblogs.herokuapp.com/api/blogs?filters[slug][$eq]=${params.id}`)
   const singleBlog = await res2.json()

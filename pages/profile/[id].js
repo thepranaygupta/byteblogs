@@ -10,7 +10,7 @@ function ProfilePage({ data }) {
 
   if (!state.user) Router.push('/')
 
-  console.log(data)
+  // console.log(data)
   return (
     <div className="mx-auto my-32 flex max-w-3xl flex-col items-center justify-center">
       <div className="border-1 flex h-[4rem] w-[4rem] items-center justify-center rounded-full border-gray-500 bg-indigo-900 text-lg text-gray-300">
@@ -31,7 +31,7 @@ export default ProfilePage
 export async function getServerSideProps(context) {
   const { data } = await axios.get(`${backendUri}/blogs?filters[writtenby][$eq]=${context.params.id}`)
 
-  console.log(data)
+  // console.log(data)
 
   return {
     props: {

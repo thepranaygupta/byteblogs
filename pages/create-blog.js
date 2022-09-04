@@ -43,12 +43,12 @@ function CreateBlog() {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log('Cloudinary data: ', data)
+        // console.log('Cloudinary data: ', data)
         toast.success('Image uploaded')
         setUrl(data)
       })
       .catch((err) => {
-        console.log('error', err)
+        // console.log('error', err)
       })
   }
 

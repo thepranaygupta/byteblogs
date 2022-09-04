@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export default function BlogCard({ blog }) {
-  console.log(blog)
+  //   console.log(blog)
 
   return (
     <Link href={`/blog/${blog.attributes.slug}`} key={blog.attributes.id}>
