@@ -4,10 +4,10 @@ export default function BlogCard({ blog }) {
   console.log(blog)
 
   return (
-    <Link href={`/${blog.attributes.slug}`} key={blog._id}>
+    <Link href={`/blog/${blog.attributes.slug}`} key={blog.attributes.id}>
       <a>
         <div className="my-4 flex flex-col items-center rounded-lg border-2 bg-white p-4 shadow-lg lg:flex-row">
-          <img src={blog.attributes.coverImageURL} className="w-80" altText={blog.courseName} />
+          <img src={blog.attributes.coverImageURL} className="w-80" alt={blog.courseName} />
 
           <div className="flex flex-col justify-between px-8 py-3 lg:py-0 ">
             <h2 className="text-xl font-bold lg:text-3xl">{blog.attributes.heading}</h2>
