@@ -58,6 +58,7 @@ function SignUp() {
         <p className="mb-1">Name:</p>
         <input
           type="text"
+          name="name"
           placeholder="Name"
           id="username"
           value={username}
@@ -70,6 +71,7 @@ function SignUp() {
         <input
           type="email"
           placeholder="Email"
+          name="email"
           id="email"
           value={email}
           onChange={onChange}
@@ -81,6 +83,7 @@ function SignUp() {
         <input
           type="password"
           placeholder="Password"
+          name="password"
           id="password"
           value={password}
           onChange={onChange}
@@ -93,6 +96,7 @@ function SignUp() {
           type="password"
           placeholder="Confirm Password"
           id="confirmPassword"
+          name="password"
           value={confirmPassword}
           onChange={onChange}
           className="w-full border-[1px] border-gray-300 py-2 px-1"

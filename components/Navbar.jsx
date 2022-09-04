@@ -9,6 +9,7 @@ function Navbar() {
   const { state, setUser } = useContext(AppContext)
 
   const user = state?.user
+  console.log(user)
 
   const logout = () => {
     toast.success('Logged Out Successfully!')
