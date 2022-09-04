@@ -136,15 +136,18 @@ export default function Blog({ blog, allblogs, myblog }) {
   )
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const blogPosts = await fetch(`https://byteblogs.herokuapp.com/api/blogs?populate=*`)
+  const data = await blogPosts.json()
+
+  const paths = data.data.map((blog) => {
+    return {
+      params: { slug: blog.slug }
+    }
+  })
 
   return {
-    paths: blogPosts.data.map((blog) => ({
-      params: {
-        slug: blog.attributes.slug
-      }
-    })),
+    paths,
     fallback: false
   }
 }
