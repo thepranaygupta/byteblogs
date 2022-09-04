@@ -3,6 +3,7 @@ import Image from 'next/Image'
 import { AiFillCaretDown } from 'react-icons/ai'
 import AppContext from '../AppContext'
 import { useContext } from 'react'
+import { toast } from 'react-toastify'
 
 function Navbar() {
   const { state, setUser } = useContext(AppContext)
@@ -10,12 +11,13 @@ function Navbar() {
   const user = state?.user
 
   const logout = () => {
+    toast.success('Logged Out Successfully!')
     localStorage.removeItem('user')
     setUser(null)
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[1000] w-full py-4 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-[1000] w-full bg-[#F1F3F8] py-4 shadow-sm">
       <div className="mx-auto flex w-11/12 max-w-6xl items-center justify-between">
         <Link href="/">
           <a>
@@ -33,9 +35,11 @@ function Navbar() {
           </div>
         ) : (
           <div className="flex items-center space-x-4">
-            <button className="hover:underline" onClick={logout}>
-              Log Out
-            </button>
+            <Link href="/create-blog">
+              <a className="hover:border-pmbarand rounded-md border-[2px] bg-pmbrand p-2 text-white hover:bg-white hover:text-pmbrand hover:shadow-md">
+                New Blog Post 🚀
+              </a>
+            </Link>
             <div className="flex cursor-pointer items-center space-x-1">
               <div className="borer-1 flex h-8 w-8 items-center justify-center rounded-full border-gray-500 bg-indigo-900 text-gray-300">
                 <p>S</p>

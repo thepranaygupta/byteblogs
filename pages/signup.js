@@ -3,6 +3,7 @@ import { useContext, useState } from 'react'
 import { backendUri } from '../backend'
 import { toast } from 'react-toastify'
 import AppContext from '../AppContext'
+import Router from 'next/router'
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -11,7 +12,11 @@ function SignUp() {
     password: '',
     confirmPassword: ''
   })
-  const { setUser } = useContext(AppContext)
+  const { state, setUser } = useContext(AppContext)
+
+  if (state.user) {
+    Router.push('/')
+  }
 
   const { username, email, password, confirmPassword } = formData
 
@@ -46,7 +51,7 @@ function SignUp() {
 
   return (
     <form
-      className="mx-auto mt-32 flex max-w-lg flex-col space-y-2 rounded-sm border-[1px] border-gray-200 p-6 shadow-md"
+      className="mx-auto mt-32 flex max-w-lg flex-col space-y-2 rounded-sm border-[1px] border-gray-200 bg-[#F1F3F8] p-6 shadow-md"
       onSubmit={signUp}
     >
       <label className="mb-2">

@@ -3,15 +3,20 @@ import AppContext from '../AppContext'
 import { backendUri } from '../backend'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import Router from 'next/router'
 
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
-  const { setUser } = useContext(AppContext)
+  const { state, setUser } = useContext(AppContext)
 
   const { email, password } = formData
+
+  if (state.user) {
+    Router.push('/')
+  }
 
   const onChange = (e) => {
     setFormData((prev) => ({
@@ -28,8 +33,10 @@ function Login() {
         identifier: email,
         password
       })
+      toast.success('Logged In Successfully!')
       setUser(data)
       localStorage.setItem('user', JSON.stringify(data))
+      Router.push('/')
     } catch (error) {
       toast.error(error.response.data.error.name)
       console.log(error)
@@ -38,7 +45,7 @@ function Login() {
 
   return (
     <form
-      className="mx-auto mt-32 flex max-w-lg flex-col space-y-2 rounded-sm border-[1px] border-gray-200 p-6 shadow-md"
+      className="mx-auto mt-32 flex max-w-lg flex-col space-y-2 rounded-sm border-[1px] border-gray-200 bg-[#F1F3F8] p-6 shadow-md"
       onSubmit={logIn}
     >
       <label className="mb-2">
