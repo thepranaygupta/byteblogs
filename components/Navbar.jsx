@@ -41,10 +41,12 @@ function Navbar() {
               </a>
             </Link>
             <div className="flex cursor-pointer items-center space-x-1">
+              <p className="mr-3 hover:underline" onClick={logout}>
+                Log Out
+              </p>
               <div className="borer-1 flex h-8 w-8 items-center justify-center rounded-full border-gray-500 bg-indigo-900 text-gray-300">
-                <p>S</p>
+                <p>{state.user.user.username.charAt(0)}</p>
               </div>
-              <AiFillCaretDown fill="#aaa" />
             </div>
           </div>
         )}
