@@ -86,7 +86,7 @@ const ArticleContent = styled(Stack)(({ theme }) => ({
 }))
 
 export default function Blog({ blog, allblogs, myblog }) {
-  const result = parseISO(blog.attributes.publishedAt)
+  const result = parseISO(myblog.attributes.publishedAt)
   console.log(blog)
   console.log(allblogs)
   console.log('My Blog : ', myblog)
@@ -98,7 +98,7 @@ export default function Blog({ blog, allblogs, myblog }) {
           <div className="m-8 flex max-w-[1200px] flex-col lg:flex-row lg:space-x-[100px]">
             <div className="mx-auto w-[90%] lg:mx-3">
               <div className="border-primaryBlue border-l-4 pl-4 text-[14px] font-bold leading-[20px] text-[#000] lg:text-[16px] lg:font-semibold lg:leading-[24px] ">
-                {blog.attributes.tags.map((item, index) => {
+                {myblog?.attributes?.tags?.map((item, index) => {
                   return (
                     <span key={index} className="mx-1">
                       <Chip label={item.tagname} href="#" clickable />
@@ -107,7 +107,7 @@ export default function Blog({ blog, allblogs, myblog }) {
                 })}
               </div>
               <div className="mt-2 text-[24px] font-bold leading-[29px]  text-[#343434] lg:text-[36px] lg:leading-[54px] lg:text-[#181818]">
-                {blog.attributes.heading}
+                {myblog.attributes.heading}
               </div>
               <div className="flex items-center">
                 <div className="mb-8 mt-5 hidden w-fit border-r border-[#545454] pr-5 text-[16px] font-normal leading-[30px] text-[#545454] lg:flex">
@@ -116,16 +116,16 @@ export default function Blog({ blog, allblogs, myblog }) {
                 <div className="mb-8 mt-5 text-[16px] font-normal leading-[30px] text-[#545454]  lg:pl-5">
                   Written by
                   <span className="bg-primaryBlueLightBg mx-2 rounded-lg p-2 px-7 font-semibold text-[#000]">
-                    {blog.attributes.writtenby}
+                    {myblog.attributes.writtenby}
                   </span>
                 </div>
               </div>
               <div className="">
-                <img src={blog.attributes.coverImageURL} alt="" className="mx-auto w-full rounded-lg" />
+                <img src={myblog.attributes.coverImageURL} alt="" className="mx-auto w-full rounded-lg" />
               </div>
               <div className="mb-10">
                 <ArticleContent>
-                  <ReactMarkdown styl>{blog.attributes.blogDescription}</ReactMarkdown>
+                  <ReactMarkdown styl>{myblog.attributes.blogDescription}</ReactMarkdown>
                 </ArticleContent>
               </div>
             </div>
@@ -138,11 +138,15 @@ export default function Blog({ blog, allblogs, myblog }) {
 
 export async function getStaticPaths() {
   const blogPosts = await fetch(`https://byteblogs.herokuapp.com/api/blogs?populate=*`)
+  const blog = await blogPosts.json();
+
+
+  console.log("BLOG",blog.data);
 
   return {
-    paths: blogPosts.data.map((blog) => ({
+    paths: blog?.data?.map((item) => ({
       params: {
-        slug: blog.attributes.slug
+        id: `${item.attributes.slug}`
       }
     })),
     fallback: false
@@ -150,7 +154,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res2 = await fetch(`https://byteblogs.herokuapp.com/api/blogs?filters[slug][$eq]=${params.slug}`)
+
+  console.log("Params", params);
+
+
+  const res2 = await fetch(`https://byteblogs.herokuapp.com/api/blogs?filters[slug][$eq]=${params.id}`)
   const singleBlog = await res2.json()
 
   const res = await fetch('https://byteblogs.herokuapp.com/api/blogs?populate=*')
