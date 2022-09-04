@@ -11,7 +11,7 @@ export default function Home({ data }) {
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="This is the home page" />
       </Head>
-      <div>
+      <div className="my-32">
         {data.data.map((blog) => (
           <BlogCard blog={blog} key={blog.id} />
         ))}
