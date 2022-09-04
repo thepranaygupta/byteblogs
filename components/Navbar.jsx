@@ -9,7 +9,7 @@ function Navbar() {
   const { state, setUser } = useContext(AppContext)
 
   const user = state?.user
-  console.log(user)
+  // console.log(user)
 
   const logout = () => {
     toast.success('Logged Out Successfully!')
@@ -37,7 +37,7 @@ function Navbar() {
         ) : (
           <div className="flex items-center space-x-4">
             <Link href="/create-blog">
-              <a className="hover:border-pmbarand rounded-md border-[2px] bg-pmbrand p-2 text-white hover:bg-white hover:text-pmbrand hover:shadow-md">
+              <a className="rounded-md border-[2px] bg-pmbrand p-2 text-white hover:border-pmbrand hover:bg-white hover:text-pmbrand hover:shadow-md">
                 New Blog Post 🚀
               </a>
             </Link>
